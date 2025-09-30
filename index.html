@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="white.png" type="image/x-icon" />
+    <title>VBNM Advogados - Especialistas em Salário-Maternidade</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+      /* --- RESET E VARIÁVEIS GLOBAIS --- */
+      :root {
+        --primary-color: #d4af37; /* Dourado */
+        --secondary-color: #1a237e; /* Azul Escuro */
+        --dark-color: #2c3e50; /* Cinza-azulado escuro para textos */
+        --light-color: #ffffff;
+        --background-light: #f8f9fa;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        line-height: 1.7;
+        color: var(--dark-color);
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      section {
+        padding: 80px 0;
+        overflow: hidden; /* Para as animações funcionarem bem */
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: var(--secondary-color);
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      /* --- ANIMAÇÕES DE SCROLL --- */
+      .fade-in-section {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .fade-in-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* --- BOTÃO DE CTA (CALL TO ACTION) --- */
+      .cta-button {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        padding: 15px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      }
+
+      .cta-button i {
+        margin-right: 10px;
+      }
+
+      /* --- SEÇÃO 1: HERO SECTION --- */
+      .hero {
+        /* IMAGEM DE FUNDO AQUI: Troque 'hero-bg.jpg' pela sua imagem */
+        background: linear-gradient(
+            rgba(26, 35, 126, 0.5),
+            rgba(26, 35, 126, 0.5)
+          ),
+          url("https://images.pexels.com/photos/325690/pexels-photo-325690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+            no-repeat center center/cover;
+        color: var(--light-color);
+        padding: 120px 0;
+        text-align: center;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero .container {
+        max-width: 800px;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        color: var(--light-color);
+        margin-bottom: 20px;
+      }
+
+      .hero h1 span {
+        color: var(--primary-color);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+      }
+
+      .hero .cta-button {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+      }
+
+      .video-placeholder {
+        margin-top: 60px;
+        width: 100%;
+        max-width: 640px;
+        height: 360px;
+        background-color: #000;
+        border: 3px solid var(--primary-color);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--light-color);
+        cursor: pointer;
+      }
+
+      /* --- SEÇÃO 2: DOR E ESCLARECIMENTO --- */
+      #dor {
+        background-color: var(--background-light);
+        text-align: center;
+      }
+
+      #dor h2 {
+        font-size: 2rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #dor p {
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* --- SEÇÃO 3: REQUISITOS --- */
+      .requirements-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .requirement-card {
+        background-color: var(--background-light);
+        padding: 30px;
+        border-radius: 10px;
+        border-left: 5px solid var(--primary-color);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .requirement-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .requirement-card h3 {
+        margin-bottom: 15px;
+      }
+
+      .special-requirement {
+        background-color: var(--secondary-color);
+        color: var(--light-color);
+        text-align: center;
+        padding: 40px;
+        border-radius: 10px;
+        margin-top: 40px;
+      }
+
+      .special-requirement h3 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+      .special-requirement .cta-button {
+        background-color: var(--light-color);
+        color: var(--secondary-color);
+      }
+
+      /* --- SEÇÃO 4: SOLUÇÃO --- */
+      #solucao {
+        background-color: var(--background-light);
+      }
+      .solution-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 50px;
+      }
+
+      .solution-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: var(--light-color);
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .solution-item i {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+      }
+
+      .security-alert {
+        margin-top: 50px;
+        text-align: center;
+        padding: 20px;
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        border-radius: 8px;
+        color: #856404;
+      }
+
+      /* --- SEÇÃO 5: AUTORIDADE / EQUIPE --- */
+      .team-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .team-photo {
+        width: 100%;
+        max-width: 700px;
+        height: 400px;
+        background-color: #ccc;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .team-bio {
+        max-width: 800px;
+      }
+
+      .team-bio h3 {
+        margin-bottom: 15px;
+      }
+
+      .lawyers-list {
+        margin-top: 20px;
+        font-weight: 600;
+        color: var(--secondary-color);
+      }
+
+      /* --- SEÇÃO 6: FAQ --- */
+      #faq {
+        background-color: var(--background-light);
+      }
+
+      .faq-item {
+        border-bottom: 1px solid #ddd;
+        padding: 20px 0;
+      }
+
+      .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .faq-question::after {
+        content: "\f078"; /* Ícone de seta para baixo (Font Awesome) */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        transition: transform 0.3s ease;
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+        padding-top: 0;
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 200px; /* Ajuste conforme necessário */
+        padding-top: 15px;
+      }
+
+      .faq-item.active .faq-question::after {
+        transform: rotate(180deg);
+      }
+
+      /* --- SEÇÃO 7: CTA FINAL --- */
+      #cta-final {
+        background: var(--secondary-color);
+        color: var(--light-color);
+        text-align: center;
+      }
+
+      #cta-final h2 {
+        color: var(--light-color);
+      }
+
+      #cta-final p {
+        margin-bottom: 30px;
+      }
+
+      /* --- SEÇÃO 8: RODAPÉ --- */
+      footer {
+        background: var(--dark-color);
+        color: var(--light-color);
+        text-align: center;
+        padding: 40px 0;
+      }
+
+      footer h3 {
+        color: var(--background-light);
+      }
+
+      .social-links a {
+        color: var(--light-color);
+        font-size: 1.8rem;
+        margin: 0 15px;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--primary-color);
+      }
+
+      footer p {
+        margin-top: 20px;
+        font-size: 0.9rem;
+      }
+
+      footer .container img {
+        width: 150px;
+        margin-bottom: 15px;
+        border-radius: 50%;
+      }
+
+      /* --- RESPONSIVIDADE --- */
+      @media (min-width: 768px) {
+        h1 {
+          font-size: 3.5rem;
+        }
+        h2 {
+          font-size: 3rem;
+        }
+
+        .requirements-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .solution-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 992px) {
+        .team-content {
+          flex-direction: row;
+          gap: 50px;
+          text-align: left;
+        }
+        .team-photo {
+          width: 400px;
+          height: 400px;
+          margin-bottom: 0;
+          flex-shrink: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero" id="inicio">
+      <div class="container fade-in-section">
+        <h1>
+          Está gestante e não tem carteira assinada? Você pode ter direito a
+          receber mais de <span>6 mil reais</span> do INSS!
+        </h1>
+        <p>
+          Muitas mamães perdem o benefício do Salário-Maternidade por não
+          conhecerem seus direitos. Saiba como nosso escritório especializado
+          pode garantir a sua licença maternidade remunerada, mesmo sem ter
+          carteira de trabalho assinada.
+        </p>
+        <a
+          href="https://api.whatsapp.com/send?phone=5589981392753&text=Olá! Gostaria de fazer uma análise sobre o meu direito ao Salário-Maternidade."
+          class="cta-button"
+          target="_blank"
+        >
+          <i class="fab fa-whatsapp"></i> Fale com uma Especialista
+        </a>
+        <div class="video-placeholder">Espaço para o Vídeo do Escritório</div>
+      </div>
+    </header>
+
+    <main>
+      <section id="dor" class="fade-in-section">
+        <div class="container">
+          <h2>
+            "Fui demitida ou sempre trabalhei sem registro. Perdi meu direito ao
+            Salário-Maternidade?"
+          </h2>
+          <p>
+            Muitas mães acreditam que, por não estarem com a carteira assinada
+            no momento do parto, perdem automaticamente o direito ao
+            Salário-Maternidade. Isso, na maioria dos casos, não é verdade. A
+            verdade é que mesmo sem ter carteira assinada, você pode ter o
+            direito de solicitar e receber do INSS 4 meses de salário para tirar
+            licença maternidade e se dedicar integralmente ao seu filho.
+          </p>
+        </div>
+      </section>
+
+      <section id="requisitos" class="fade-in-section">
+        <div class="container">
+          <h2>Verifique de Forma Simples se Você Pode Ter o Direito</h2>
+          <p
+            style="
+              text-align: center;
+              max-width: 800px;
+              margin: -20px auto 40px auto;
+            "
+          >
+            A lei pode ser complexa, mas seu direito pode ser simples de
+            entender. Veja os cenários mais comuns para mães sem emprego formal:
+          </p>
+
+          <div class="requirements-grid">
+            <div class="requirement-card">
+              <h3>Demitida do emprego formal</h3>
+              <p>
+                Você pode ter direito a solicitar o benefício do
+                auxílio-maternidade, se tinha carteira assinada e foi demitida
+                nos últimos 12 meses.
+              </p>
+            </div>
+            <div class="requirement-card">
+              <h3>Contribuições como Autônoma ou MEI</h3>
+              <p>
+                Se você paga ou já pagou o INSS por conta própria, pode ter
+                direito a receber salário maternidade.
+              </p>
+            </div>
+          </div>
+
+          <div class="special-requirement">
+            <h3>
+              MAS EU NUNCA PAGUEI INSS E NEM TRABALHEI DE CARTEIRA ASSINADA,
+              TENHO DIREITO?
+            </h3>
+            <p>
+              Se você está gestante e nunca pagou o INSS ou trabalhou de
+              carteira assinada, nós podemos te ajudar a buscar um benefício
+              para que possa ter a tranquilidade de tirar sua licença
+              maternidade e dar toda a atenção que o seu bebê merece e precisa.
+            </p>
+            <a
+              href="https://api.whatsapp.com/send?phone=5589981392753&text=Olá! Gostaria de saber mais sobre meus direitos, mesmo sem ter contribuído para o INSS."
+              class="cta-button"
+              target="_blank"
+              >Quero Saber Mais</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="solucao" class="fade-in-section">
+        <div class="container">
+          <h2>Nossa Assessoria Garante um Processo Mais Seguro e Humano</h2>
+          <p
+            style="
+              text-align: center;
+              max-width: 800px;
+              margin: -20px auto 40px auto;
+            "
+          >
+            Nosso escritório é especializado em auxílio-maternidade e podemos te
+            ajudar a buscar o seu direito. Veja como nossa atuação combativa e
+            técnica faz a diferença:
+          </p>
+
+          <div class="solution-grid">
+            <div class="solution-item">
+              <i class="fas fa-search-dollar"></i>
+              <div>
+                <h3>1. Análise Completa</h3>
+                <p>
+                  Verificamos todo o seu histórico e confirmamos se você tem o
+                  direito, explicando os riscos e as chances reais com total
+                  transparência.
+                </p>
+              </div>
+            </div>
+            <div class="solution-item">
+              <i class="fas fa-folder-open"></i>
+              <div>
+                <h3>2. Organização da Documentação</h3>
+                <p>
+                  Orientamos sobre cada documento necessário para dar entrada no
+                  pedido da forma correta, aumentando as chances de aprovação.
+                </p>
+              </div>
+            </div>
+            <div class="solution-item">
+              <i class="fas fa-robot"></i>
+              <div>
+                <h3>3. Protocolo Correto no Meu INSS</h3>
+                <p>
+                  Realizamos o pedido por você, evitando os erros comuns que a
+                  análise automática dos robôs do INSS não perdoa.
+                </p>
+              </div>
+            </div>
+            <div class="solution-item">
+              <i class="fas fa-gavel"></i>
+              <div>
+                <h3>4. Recurso na Justiça</h3>
+                <p>
+                  Se o seu pedido for negado, estamos preparados para recorrer
+                  na justiça para garantir seu direito.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="security-alert">
+            <p>
+              <strong>Importante:</strong> O próprio INSS alerta a população
+              sobre golpes. Para sua segurança, procure sempre um advogado
+              devidamente registrado na OAB.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="equipe" class="fade-in-section">
+        <div class="container">
+          <h2 style="margin-bottom: 50px">
+            Conheça a Especialista que Lutará Pelo seu Direito
+          </h2>
+          <div class="team-content">
+            <div class="team-photo">Foto Profissional da Equipe</div>
+            <div class="team-bio">
+              <h3>Unindo Tecnologia e Empatia para Garantir seu Direito</h3>
+              <p>
+                Somos um escritório especializado em benefícios do INSS, e
+                estamos preparados para defender os seus direitos. Unimos o
+                nosso conhecimento profundo da lei com um trabalho ágil para
+                solicitar benefícios previdenciários. Utilizamos modernas
+                ferramentas de tecnologia e gestão para que seu processo seja
+                conduzido de forma rápida e eficiente.
+              </p>
+              <p>
+                Nosso propósito é ser a conexão segura e humana entre você e o
+                seu direito, simplificando a burocracia do INSS com a agilidade
+                dos processos digitais e a empatia de um atendimento próximo e
+                transparente.
+              </p>
+              <div class="lawyers-list">
+                Dr. ALDO VICTOR - OAB/ΡΙ 21310 | DR. DANILO BRASIL - OAB/PI
+                21308 | DR. HIAGO NUNES OAB/PI 23811 | DRA. SABRINNA MAIA -
+                ΟΑΒ/ΡΙ 23802
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="fade-in-section">
+        <div class="container">
+          <h2>Suas Dúvidas, Respondidas de Forma Clara</h2>
+          <div class="faq-container">
+            <div class="faq-item">
+              <div class="faq-question">
+                Qual o valor do Salário-Maternidade para quem está desempregada?
+              </div>
+              <div class="faq-answer">
+                <p>
+                  O valor é calculado com base na média das suas últimas
+                  contribuições, respeitando o teto do INSS. Se a média for
+                  inferior, você receberá o valor de um salário mínimo vigente
+                  por mês.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                Por quanto tempo eu recebo o benefício?
+              </div>
+              <div class="faq-answer">
+                <p>
+                  A duração padrão do Salário-Maternidade é de 4 meses (4
+                  parcelas).
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                Até quando posso pedir o benefício após o nascimento do bebê?
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Você tem um prazo de até 5 anos após a data do parto para
+                  solicitar o Salário-Maternidade. Não deixe seu direito para
+                  depois!
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                Meu pedido já foi negado pelo INSS. E agora?
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Uma negativa não é o fim da linha. É seu direito recorrer da
+                  decisão. Uma análise jurídica especializada no motivo da
+                  negativa é o primeiro e mais importante passo para reverter a
+                  situação e garantir seu benefício.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cta-final" class="fade-in-section">
+        <div class="container">
+          <h2>Não perca o seu direito</h2>
+          <p>
+            Muitas mamães perdem o seu auxílio-maternidade porque não sabem dos
+            seus direitos. Fale conosco agora e marque o seu atendimento
+            gratuito.
+          </p>
+          <a
+            href="https://api.whatsapp.com/send?phone=5589981392753&text=Olá! Vi o site e quero marcar meu atendimento gratuito para analisar meu direito ao Salário-Maternidade."
+            class="cta-button"
+            target="_blank"
+          >
+            <i class="fab fa-whatsapp"></i> Falar com Especialista Agora!
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <iframe
+      data-tally-src="https://tally.so/embed/3XXXEO?dynamicHeight=1"
+      loading="lazy"
+      width="100%"
+      height="150"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+      title="Receba ajuda de um especialista"
+    ></iframe>
+    <script>
+      var d = document,
+        w = "https://tally.so/widgets/embed.js",
+        v = function () {
+          "undefined" != typeof Tally
+            ? Tally.loadEmbeds()
+            : d
+                .querySelectorAll("iframe[data-tally-src]:not([src])")
+                .forEach(function (e) {
+                  e.src = e.dataset.tallySrc;
+                });
+        };
+      if ("undefined" != typeof Tally) v();
+      else if (d.querySelector('script[src="' + w + '"]') == null) {
+        var s = d.createElement("script");
+        (s.src = w), (s.onload = v), (s.onerror = v), d.body.appendChild(s);
+      }
+    </script>
+
+    <footer>
+      <div class="container">
+        <img src="black.png" alt="" />
+        <h3>VBNM Advogados</h3>
+        <p>Atendimento 100% digital e seguro para todo o Brasil.</p>
+        <div class="social-links">
+          <a
+            href="https://www.instagram.com/vbnmadvogados/"
+            target="_blank"
+            aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </div>
+        <p>&copy; 2025 VBNM Advogados. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Animação de Fade-in ao Rolar a Página ---
+        const sections = document.querySelectorAll(".fade-in-section");
+
+        const sectionObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.1,
+          }
+        );
+
+        sections.forEach((section) => {
+          sectionObserver.observe(section);
+        });
+
+        // --- Lógica do Acordeão do FAQ ---
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question");
+
+          question.addEventListener("click", () => {
+            const currentlyActive = document.querySelector(".faq-item.active");
+
+            if (currentlyActive && currentlyActive !== item) {
+              currentlyActive.classList.remove("active");
+            }
+
+            item.classList.toggle("active");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
