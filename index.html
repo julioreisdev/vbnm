@@ -26,6 +26,14 @@
         --dark-color: #2c3e50; /* Cinza-azulado escuro para textos */
         --light-color: #ffffff;
         --background-light: #f8f9fa;
+
+        /* Tamanhos de fonte base responsivos */
+        --font-size-base: 16px;
+        --font-size-h1: 2.5rem;
+        --font-size-h2: 2rem;
+        --font-size-h3: 1.5rem;
+        --font-size-normal: 1rem;
+        --font-size-small: 0.875rem;
       }
 
       * {
@@ -37,11 +45,13 @@
 
       html {
         scroll-behavior: smooth;
+        font-size: var(--font-size-base);
       }
 
       body {
         line-height: 1.7;
         color: var(--dark-color);
+        font-size: var(--font-size-normal);
       }
 
       .container {
@@ -66,10 +76,22 @@
         line-height: 1.3;
       }
 
+      h1 {
+        font-size: var(--font-size-h1);
+      }
+
       h2 {
-        font-size: 2.5rem;
+        font-size: var(--font-size-h2);
         text-align: center;
         margin-bottom: 40px;
+      }
+
+      h3 {
+        font-size: var(--font-size-h3);
+      }
+
+      p {
+        font-size: var(--font-size-normal);
       }
 
       /* --- ANIMAÇÕES DE SCROLL --- */
@@ -84,20 +106,52 @@
         transform: translateY(0);
       }
 
+      /* Animações adicionais */
+      .fade-in-left {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .fade-in-right {
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .fade-in-left.visible,
+      .fade-in-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .zoom-in {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .zoom-in.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
       /* --- BOTÃO DE CTA (CALL TO ACTION) --- */
       .cta-button {
         display: inline-block;
         background-color: var(--primary-color);
+        margin-bottom: 10px;
         color: var(--secondary-color);
         padding: 15px 35px;
         border-radius: 50px;
         text-decoration: none;
         font-weight: 700;
-        font-size: 1.1rem;
+        font-size: var(--font-size-normal);
         text-transform: uppercase;
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        margin-top: 25px;
       }
 
       .cta-button:hover {
@@ -119,7 +173,7 @@
           url("https://images.pexels.com/photos/325690/pexels-photo-325690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
             no-repeat center center/cover;
         color: var(--light-color);
-        padding: 120px 0;
+        padding: 50px 0;
         text-align: center;
         min-height: 100vh;
         display: flex;
@@ -128,11 +182,20 @@
       }
 
       .hero .container {
-        max-width: 800px;
+        max-width: 1500px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .hero-text {
+        flex: 1;
+        text-align: left;
+        padding-right: 30px;
       }
 
       .hero h1 {
-        font-size: 3rem;
+        font-size: var(--font-size-h1);
         color: var(--light-color);
         margin-bottom: 20px;
       }
@@ -142,7 +205,7 @@
       }
 
       .hero p {
-        font-size: 1.2rem;
+        font-size: var(--font-size-normal);
         margin-bottom: 40px;
       }
 
@@ -152,19 +215,104 @@
       }
 
       .video-placeholder {
-        margin-top: 60px;
+        flex: 1;
         width: 100%;
-        max-width: 640px;
+        max-width: 800px;
         height: 360px;
-        background-color: #000;
-        border: 3px solid var(--primary-color);
-        border-radius: 10px;
+        background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         color: var(--light-color);
         cursor: pointer;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.7),
+          inset 0 0 10px rgba(255, 255, 255, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+      .video-placeholder video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .video-placeholder:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 35px rgba(87, 87, 87, 0.3);
+        border-color: #44444480;
+      }
+
+      /* Responsividade para fontes e elementos */
+      @media (max-width: 1024px) {
+        :root {
+          --font-size-base: 15px;
+          --font-size-h1: 2.2rem;
+          --font-size-h2: 1.8rem;
+          --font-size-h3: 1.3rem;
+        }
+
+        .cta-button {
+          padding: 12px 30px;
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --font-size-base: 14px;
+          --font-size-h1: 2rem;
+          --font-size-h2: 1.6rem;
+          --font-size-h3: 1.2rem;
+        }
+
+        .hero .container {
+          flex-direction: column-reverse;
+        }
+
+        .hero-text {
+          padding-right: 0;
+          margin-top: 40px;
+          text-align: center;
+        }
+
+        .video-placeholder {
+          margin-bottom: 0;
+        }
+
+        section {
+          padding: 60px 0;
+        }
+
+        .cta-button {
+          margin-top: 20px;
+          display: block;
+          max-width: 80%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        :root {
+          --font-size-base: 13px;
+          --font-size-h1: 1.8rem;
+          --font-size-h2: 1.5rem;
+          --font-size-h3: 1.1rem;
+          --font-size-normal: 0.95rem;
+          --font-size-small: 0.8rem;
+        }
+
+        .cta-button {
+          padding: 10px 25px;
+          font-size: 0.9rem;
+          margin-top: 18px;
+          max-width: 100%;
+        }
+
+        section {
+          padding: 40px 0;
+        }
       }
 
       /* --- SEÇÃO 2: DOR E ESCLARECIMENTO --- */
@@ -174,14 +322,14 @@
       }
 
       #dor h2 {
-        font-size: 2rem;
+        font-size: var(--font-size-h2);
         max-width: 700px;
         margin-left: auto;
         margin-right: auto;
       }
 
       #dor p {
-        font-size: 1.1rem;
+        font-size: var(--font-size-normal);
         max-width: 800px;
         margin: 0 auto;
       }
@@ -315,7 +463,7 @@
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
-        font-size: 1.2rem;
+        font-size: var(--font-size-h3);
         font-weight: 600;
       }
 
@@ -391,13 +539,138 @@
         border-radius: 50%;
       }
 
+      /* --- ESTILOS DO FORMULÁRIO --- */
+      #formulario {
+        background-color: var(--background-light);
+        padding: 80px 0;
+      }
+
+      .form-subtitle {
+        text-align: center;
+        margin-bottom: 40px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -20px;
+      }
+
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .contact-form {
+        background-color: var(--light-color);
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-top: 5px solid var(--primary-color);
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--secondary-color);
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        outline: none;
+      }
+
+      .form-group textarea {
+        height: 120px;
+        resize: vertical;
+      }
+
+      .form-submit-btn {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        border: none;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .form-submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      }
+
+      .form-submit-btn i {
+        margin-right: 10px;
+      }
+
+      .form-info {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .info-card {
+        background-color: var(--light-color);
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+      }
+
+      .info-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .info-card i {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+      }
+
+      .info-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      .info-card p {
+        font-size: 0.95rem;
+      }
+
       /* --- RESPONSIVIDADE --- */
       @media (min-width: 768px) {
         h1 {
           font-size: 3.5rem;
         }
         h2 {
-          font-size: 3rem;
+          font-size: 2rem;
         }
 
         .requirements-grid {
@@ -421,30 +694,47 @@
           margin-bottom: 0;
           flex-shrink: 0;
         }
+
+        /* Responsividade do formulário */
+        .form-container {
+          flex-direction: row;
+          align-items: flex-start;
+        }
+
+        .contact-form {
+          flex: 2;
+        }
+
+        .form-info {
+          flex: 1;
+        }
       }
     </style>
   </head>
   <body>
     <header class="hero" id="inicio">
       <div class="container fade-in-section">
-        <h1>
-          Está gestante e não tem carteira assinada? Você pode ter direito a
-          receber mais de <span>6 mil reais</span> do INSS!
-        </h1>
-        <p>
-          Muitas mamães perdem o benefício do Salário-Maternidade por não
-          conhecerem seus direitos. Saiba como nosso escritório especializado
-          pode garantir a sua licença maternidade remunerada, mesmo sem ter
-          carteira de trabalho assinada.
-        </p>
-        <a
-          href="https://api.whatsapp.com/send?phone=5589981392753&text=Olá! Gostaria de fazer uma análise sobre o meu direito ao Salário-Maternidade."
-          class="cta-button"
-          target="_blank"
-        >
-          <i class="fab fa-whatsapp"></i> Fale com uma Especialista
-        </a>
-        <div class="video-placeholder">Espaço para o Vídeo do Escritório</div>
+        <div class="hero-text">
+          <h1>
+            Está gestante e não tem carteira assinada? Você pode ter direito a
+            receber mais de <span>6 mil reais</span> do INSS!
+          </h1>
+          <p>
+            Muitas mamães perdem o benefício do Salário-Maternidade por não
+            conhecerem seus direitos. Saiba como nosso escritório especializado
+            pode garantir a sua licença maternidade remunerada, mesmo sem ter
+            carteira de trabalho assinada.
+          </p>
+          <a href="#formulario" class="cta-button">
+            <i class="fas fa-calendar-alt"></i> Agende seu horário
+          </a>
+        </div>
+        <div class="video-placeholder">
+          <video id="video" width="100%" height="360" controls>
+            <source src="video.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeo HTML5.
+          </video>
+        </div>
       </div>
     </header>
 
@@ -697,16 +987,87 @@
       </section>
     </main>
 
-    <iframe
-      data-tally-src="https://tally.so/embed/3XXXEO?dynamicHeight=1"
-      loading="lazy"
-      width="100%"
-      height="150"
-      frameborder="0"
-      marginheight="0"
-      marginwidth="0"
-      title="Receba ajuda de um especialista"
-    ></iframe>
+    <section id="formulario" class="fade-in-section">
+      <div class="container">
+        <h2>Agende seu Horário</h2>
+        <p class="form-subtitle">
+          Preencha o formulário abaixo para falar com um especialista
+        </p>
+
+        <div class="form-container">
+          <form id="contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="nome">Nome Completo</label>
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Seu nome completo"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="telefone">Telefone (WhatsApp)</label>
+              <input
+                type="tel"
+                id="telefone"
+                name="telefone"
+                placeholder="(00) 00000-0000"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="seu@email.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="mensagem">Mensagem (opcional)</label>
+              <textarea
+                id="mensagem"
+                name="mensagem"
+                placeholder="Conte-nos um pouco sobre sua situação..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="form-submit-btn">
+              <i class="fas fa-calendar-check"></i> Agendar Consulta Gratuita
+            </button>
+          </form>
+
+          <div class="form-info">
+            <div class="info-card">
+              <i class="fas fa-lock"></i>
+              <h3>Seus Dados Estão Seguros</h3>
+              <p>
+                Todas as informações são confidenciais e protegidas por sigilo
+                advocatício.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <i class="fas fa-clock"></i>
+              <h3>Resposta Rápida</h3>
+              <p>Nossa equipe entrará em contato em até 24 horas úteis.</p>
+            </div>
+
+            <div class="info-card">
+              <i class="fas fa-handshake"></i>
+              <h3>Primeira Consulta Gratuita</h3>
+              <p>Avaliamos seu caso sem compromisso.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <script>
       var d = document,
         w = "https://tally.so/widgets/embed.js",
@@ -784,6 +1145,29 @@
             item.classList.toggle("active");
           });
         });
+      });
+    </script>
+    <script>
+      // --- Vídeo inícia automáticamente ao atualizar a página---
+      window.addEventListener("DOMContentLoaded", () => {
+        const init = document.querySelector("video");
+
+        if (init) {
+          init.muted = true;
+          init.currentTime = 0;
+          const playPromise = init.play();
+
+          // Alguns navegadores exigem tratamento de promessa
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                console.log("Vídeo iniciado automaticamente ✅");
+              })
+              .catch((error) => {
+                console.warn("Autoplay bloqueado:", error);
+              });
+          }
+        }
       });
     </script>
   </body>
